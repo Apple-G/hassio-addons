@@ -1,8 +1,8 @@
 {
-  "name": "Cloudflare Tunnel",
+  "name": "Cloudflare Tunnel (route IP)",
   "version": "1.3.0",
-  "slug": "cloudflare-tunnel",
-  "description": "Cloudflare Tunnel for Home Assistant",
+  "slug": "cloudflare-tunnel-route",
+  "description": "Cloudflare Tunnel for Home Assistant with route IP-Address",
   "url": "https://github.com/w35l3y/hassio-addons/tree/main/cloudflare_tunnel",
   "ingress": false,
   "panel_icon": "mdi:tunnel",
@@ -48,6 +48,7 @@
       "proxyType": "str?"
     },
     "no-autoupdate": "bool?",
+    "warp-routing": { "enabled" : "bool?" },
     "loglevel": "str?",
     "logfile": "str?",
     "metrics": "str?",
@@ -58,6 +59,7 @@
         "path": "str?",
         "service": "str?"
       }
-    ]
+    ],
+    "routeIP": "str?"
   }
 }

@@ -45,7 +45,15 @@ if ! bashio::fs.file_exists "$CLOUDFLARE_PATH/cert.pem" || [[ "$OLD_TUNNEL" != "
   rm -f "$CREDFILE"
 
   cloudflared --credentials-file="$CREDFILE" tunnel create "$NEW_TUNNEL"
-
+  
+  # >>> add route IP
+  if bashio::config.has_value "routeIP"; then
+    ROUTEIP=$(bashio::config "routeIP")
+    cloudflared tunnel route ip add "$ROUTEIP" "$NEW_TUNNEL" || bashio::exit.nok "Failed to route ip ($ROUTEIP) route: $HOSTNAME"
+  fi
+  # <<< add route IP
+  
+  
   cp -r $CLOUDFLARE_PATH/. /data/
 fi
 
